@@ -1,0 +1,11 @@
+---
+- name: get system facts
+  hosts: web
+  tasks:
+  - name: get package facts
+    package_facts:
+      manager: auto
+
+  - name: Print the rpm package facts
+    debug:
+      var: ansible_facts.packages
