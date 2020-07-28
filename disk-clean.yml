@@ -32,6 +32,6 @@
     when: disk_free is succeeded
 
   - name: Not Fixed
-    debug:
+    fail:
       msg: "Ansible received an alert to clean up {{ mountpoint }} on {{ inventory_hostname }}. However; after purging files older than 7 days old the disk is still saturated please investigate."
     when: disk_free is failed
