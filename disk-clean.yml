@@ -3,6 +3,11 @@
   hosts: web
   gather_facts: false 
   tasks:
+  - name: delete previous file if exists
+    file:
+      path: /tmp/largefile
+      state: absent
+      
   - name: Create Large file in /tmp
     shell: fallocate -l 4.5g /tmp/largefile
     
