@@ -1,0 +1,19 @@
+---
+- name: check if box is vulnerable for baron samedit
+  hosts: all
+  tasks:
+  - name: Check sudo
+    shell: sudoedit -s / || /bin/true
+    register: sudoeditout
+    become: true
+    changed_when: false
+
+  - name: Print not vulnarable 
+    debug:
+      msg: "All good for '{{ inventory_hostname }}!'"
+    when: '"usage: sudoedit" in sudoeditout.stderr'
+
+  - name: Print vulnarable
+    fail:
+      msg: "'{{inventory_hostname}}' is vulnarable!"
+    when: '"sudoedit: /:" in sudoeditout.stderr'
