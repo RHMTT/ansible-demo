@@ -9,7 +9,7 @@
       state: absent
       
   - name: Create Large file in /tmp
-    shell: fallocate -l 4.5g /tmp/largefile
+    shell: fallocate -l 6g /tmp/largefile
     
   - name: set file to be older than 7 days
     shell: touch -a -m -t 201901181205.09 /tmp/largefile
